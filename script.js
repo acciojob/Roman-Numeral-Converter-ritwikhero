@@ -10,7 +10,7 @@ function convertToRoman(num) {
     };
 
   //your code here
-		let result = "";
+	let result = "";
 
   for (let key in obj) {
     const [symbol, value] = obj[key];
@@ -29,8 +29,10 @@ function convertToRoman(num) {
   }
 
   return result;
-
 }
+
+// console.log(convertToRoman(36));
+
 // You can test your code by running the above function and printing it to console by pressing the run button at the top. To run it with input 36, uncomment the following line
 
 // console.log(convertToRoman(36));
