@@ -1,16 +1,19 @@
 function convertToRoman(num) {
-  	const obj = {
-      0:['M',1000], 
-      1:['D', 500], 
-      2:['C', 100], 
-      3:['L', 50], 
-      4:['X', 10], 
-      5:['V', 5], 
-      6:['I', 1]
-    };
+  if (isNaN(num) || num < 1 || num > 3999) {
+    return "Invalid input";
+  }
 
-  //your code here
-	let result = "";
+  const obj = {
+    0:['M',1000], 
+    1:['D', 500], 
+    2:['C', 100], 
+    3:['L', 50], 
+    4:['X', 10], 
+    5:['V', 5], 
+    6:['I', 1]
+  };
+
+  let result = "";
 
   for (let key in obj) {
     const [symbol, value] = obj[key];
@@ -21,8 +24,8 @@ function convertToRoman(num) {
       num -= value * count;
     }
 
-    // Handle cases like 4, 40, 9, etc. (using subtraction notation)
-    if (key % 2 === 0 && num >= obj[key + 2][1] - value) {
+    // Handle subtraction notation
+    if (key % 2 === 0 && num >= obj[key + 2][1] - value && key < 6) {
       result += obj[key + 2][0] + symbol;
       num -= obj[key + 2][1] - value;
     }
@@ -30,6 +33,7 @@ function convertToRoman(num) {
 
   return result;
 }
+
 
 // console.log(convertToRoman(36));
 
