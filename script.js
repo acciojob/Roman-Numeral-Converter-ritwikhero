@@ -1,37 +1,32 @@
 function convertToRoman(num) {
-  if (isNaN(num) || num < 1 || num > 3999) {
-    return "Invalid input";
-  }
+    const romanSymbols = [
+        ['M', 1000],
+        ['CM', 900],
+        ['D', 500],
+        ['CD', 400],
+        ['C', 100],
+        ['XC', 90],
+        ['L', 50],
+        ['XL', 40],
+        ['X', 10],
+        ['IX', 9],
+        ['V', 5],
+        ['IV', 4],
+        ['I', 1]
+    ];
 
-  const obj = {
-    0:['M',1000], 
-    1:['D', 500], 
-    2:['C', 100], 
-    3:['L', 50], 
-    4:['X', 10], 
-    5:['V', 5], 
-    6:['I', 1]
-  };
+    let result = '';
 
-  let result = "";
+    for (let i = 0; i < romanSymbols.length; i++) {
+        const [symbol, value] = romanSymbols[i];
 
-  for (let key in obj) {
-    const [symbol, value] = obj[key];
-    const count = Math.floor(num / value);
-
-    if (count >= 1) {
-      result += symbol.repeat(count);
-      num -= value * count;
+        while (num >= value) {
+            result += symbol;
+            num -= value;
+        }
     }
 
-    // Handle subtraction notation
-    if (key % 2 === 0 && num >= obj[key + 2][1] - value && key < 6) {
-      result += obj[key + 2][0] + symbol;
-      num -= obj[key + 2][1] - value;
-    }
-  }
-
-  return result;
+    return result;
 }
 
 
